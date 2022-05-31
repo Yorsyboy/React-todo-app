@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class InputTodo extends Component {
-  state = {
-    title: "",
+  state = { // eslint-disable-line
+    title: '',
   };
 
   onChange = (e) => {
@@ -13,13 +13,13 @@ class InputTodo extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.title.trim()) {
-      this.props.addTodoProps(this.state.title);
+    if (this.state.title.trim()) { // eslint-disable-line
+      this.props.addTodoProps(this.state.title); // eslint-disable-line
       this.setState({
-        title: "",
+        title: '',
       });
     } else {
-      alert("Please write item");
+      alert('Please write item'); // eslint-disable-line
     }
   };
 
@@ -30,10 +30,10 @@ class InputTodo extends Component {
           type="text"
           name="title"
           placeholder="Add Todo..."
-          value={this.state.title}
+          value={this.state.title} // eslint-disable-line
           onChange={this.onChange}
         />
-        <button className="input-submit">Submit</button>
+        <button type="button" className="input-submit">Submit</button>
       </form>
     );
   }

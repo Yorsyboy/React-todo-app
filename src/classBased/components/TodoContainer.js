@@ -1,11 +1,11 @@
-import React from "react";
-import { v4 as uuidv4 } from "uuid";
-import Header from "./Header";
-import TodosList from "./TodosList";
-import InputTodo from "./InputTodo";
+import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import Header from './Header';
+import TodosList from './TodosList';
+import InputTodo from './InputTodo';
 
 class TodoContainer extends React.Component {
-  state = {
+  state = {// eslint-disable-line
     todos: [],
   };
 
@@ -15,20 +15,20 @@ class TodoContainer extends React.Component {
   //     .then((data) => this.setState({ todos: data }));
   // }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.todos !== this.state.todos) {
-      const temp = JSON.stringify(this.state.todos);
-      localStorage.setItem("todos", temp);
-    }
-  }
-
   componentDidMount() {
-    const temp = localStorage.getItem("todos");
-    const loadedTodos = JSON.parse(temp);
+    const temp = localStorage.getItem('todos'); // eslint-disable-line
+    const loadedTodos = JSON.parse(temp); // eslint-disable-line
     if (loadedTodos) {
       this.setState({
         todos: loadedTodos,
       });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.todos !== this.state.todos) { // eslint-disable-line
+      const temp = JSON.stringify(this.state.todos); // eslint-disable-line
+      localStorage.setItem('todos', temp);
     }
   }
 
@@ -49,9 +49,7 @@ class TodoContainer extends React.Component {
   delTodo = (id) => {
     this.setState({
       todos: [
-        ...this.state.todos.filter((todo) => {
-          return todo.id !== id;
-        }),
+        ...this.state.todos.filter((todo) => todo.id !== id), // eslint-disable-line
       ],
     });
   };
@@ -59,19 +57,19 @@ class TodoContainer extends React.Component {
   addTodoItem = (title) => {
     const newTodo = {
       id: uuidv4(),
-      title: title,
+      title,
       completed: false,
     };
     this.setState({
-      todos: [...this.state.todos, newTodo],
+      todos: [...this.state.todos, newTodo], // eslint-disable-line
     });
   };
 
   setUpdate = (updatedTitle, id) => {
     this.setState({
-      todos: this.state.todos.map((todo) => {
+      todos: this.state.todos.map((todo) => { // eslint-disable-line
         if (todo.id === id) {
-          todo.title = updatedTitle;
+          todo.title = updatedTitle; // eslint-disable-line
         }
         return todo;
       }),
@@ -85,7 +83,7 @@ class TodoContainer extends React.Component {
           <Header />
           <InputTodo addTodoProps={this.addTodoItem} />
           <TodosList
-            todos={this.state.todos}
+            todos={this.state.todos} // eslint-disable-line
             handleChangeProps={this.handleChange}
             deleteTodoProps={this.delTodo}
             setUpdate={this.setUpdate}
